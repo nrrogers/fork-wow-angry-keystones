@@ -13,7 +13,7 @@ local affixSchedule = {
 	[1]  = { [1]=6,   [2]=124, [3]=9, }, -- Tyrannical | Raging      | Storming
 	[2]  = { [1]=134, [2]=7,   [3]=10,}, -- Fortified  | Entangling  | Bolstering
 	[3]  = { [1]=136, [2]=123, [3]=9, }, -- Tyrannical | Incorporeal | Spiteful
-	[4]  = { [1]=0,   [2]=0,   [3]=10,}, -- Fortified  |  | 
+	[4]  = { [1]=135, [2]=6,   [3]=10,}, -- Fortified  | Afflicted   | Raging
 	[5]  = { [1]=0,   [2]=0,   [3]=9, }, -- Tyrannical |  | 
 	[6]  = { [1]=0,   [2]=0,   [3]=10,}, -- Fortified  |  | 
 	[7]  = { [1]=0,   [2]=0,   [3]=9, }, -- Tyrannical |  | 
@@ -134,7 +134,12 @@ local function UpdateFrame()
 			local affixes = affixSchedule[scheduleWeek]
 			for j = 1, #affixes do
 				local affix = entry.Affixes[j]
-				affix:SetUp(affixes[j])
+				if affix == 0 then
+					affix:Hide()
+				else
+					affix:SetUp(affixes[j])
+					affix:Show()
+				end
 			end
 		end
 		Mod.AffixFrame.Label:Hide()
