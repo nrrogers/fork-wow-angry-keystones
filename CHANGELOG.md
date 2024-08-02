@@ -1,3 +1,12 @@
+## v0.31.1
+
+* Update for deDE locale
+* Bug fixes
+
+## v0.31.0
+
+* Initial TWW support
+
 ## v0.30.12
 
 * Update to itIT localization
