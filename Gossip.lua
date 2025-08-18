@@ -19,13 +19,7 @@ local function GossipNPCID()
 end
 
 local function IsStaticPopupShown()
-	for index = 1, STATICPOPUP_NUMDIALOGS do
-		local frame = _G["StaticPopup"..index]
-		if frame and frame:IsShown() then
-			return true
-		end
-	end
-	return false
+	return GetFirstShownDialog(true)
 end
 
 local function IsInActiveChallengeMode()
@@ -76,7 +70,10 @@ function Mod:GOSSIP_SHOW()
 			local popupIsShown = IsStaticPopupShown()
 			if popupIsShown then
 				if not popupWasShown then
-					StaticPopup1Button1:Click()
+					local button = popupIsShown:GetButton1()
+					if button then
+						button:Click()
+					end
 					C_GossipInfo.CloseGossip()
 				end
 			else
